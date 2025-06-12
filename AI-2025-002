@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Certificate Verification - AI-2025-002</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: green;
+        }
+        p {
+            font-size: 18px;
+        }
+        img {
+            margin-top: 20px;
+            max-width: 90%;
+            height: auto;
+            border: 2px solid #333;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Certificate Verified ✅</h1>
+    <p><strong>Name:</strong> Mashaff Ali </p>
+    <p><strong>Certificate ID:</strong> AI-2025-002</p>
+    <img src="images/AI-2025-002.jpg" alt="Certificate Image">
+    <h2>Professional of Tehreek e Baidari </h2>
+    <h3>contact us:
+   <a> ptbumofficial@gmail.com </a>  </h3>
+</body>
+</html>
