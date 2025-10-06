@@ -3,143 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Certificate Verification | Bedari Tech Pakistan</title>
+  <title>Certificate Verification</title>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
-      background: #f5f7fa;
-      color: #222;
+      font-family: 'Segoe UI', Arial, sans-serif;
       text-align: center;
+      background: #f4f7fa;
+      color: #222;
       margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background: #004aad;
-      color: white;
-      padding: 20px 0;
-      font-size: 24px;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-
-    .container {
-      margin: 50px auto;
-      max-width: 500px;
-      background: white;
       padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
-    input {
-      padding: 10px;
-      width: 80%;
-      font-size: 16px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      outline: none;
+    h1 {
+      color: #008000;
+      margin-bottom: 10px;
     }
 
-    button {
-      background: #004aad;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin-top: 15px;
-      border-radius: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s;
+    h2 {
+      color: #333;
+      margin-top: 20px;
     }
 
-    button:hover {
-      background: #002d70;
+    p {
+      font-size: 18px;
+      line-height: 1.6;
     }
 
-    .result {
-      margin-top: 30px;
+    .certificate {
+      margin-top: 25px;
     }
 
-    .result img {
-      width: 100%;
-      max-width: 450px;
-      border-radius: 15px;
+    img {
+      margin-top: 10px;
+      max-width: 95%;
+      border: 2px solid #555;
+      border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 
     footer {
-      background: #f0f0f0;
-      padding: 20px;
       margin-top: 40px;
-      font-size: 15px;
+      background: #222;
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
     }
 
-    .social-links a {
-      color: #004aad;
+    a {
+      color: #00bfff;
       text-decoration: none;
-      margin: 0 10px;
-      font-weight: 500;
+      margin: 0 8px;
     }
 
-    .social-links a:hover {
+    a:hover {
       text-decoration: underline;
+    }
+
+    .error {
+      color: red;
+      font-weight: bold;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
-  <header>Certificate Verification Portal</header>
-
-  <div class="container">
-    <h2>Verify Your Certificate</h2>
-    <p>Enter your Certificate ID below:</p>
-
-    <input type="text" id="certificateId" placeholder="Enter Certificate ID (e.g. AIES-2025-001)">
-    <br>
-    <button onclick="verifyCertificate()">Verify</button>
-
-    <div class="result" id="result"></div>
+  <h1>Certificate Verification ✅</h1>
+  <div id="certificate-info">
+    <p>Loading certificate details...</p>
   </div>
 
   <footer>
-    <p>For any queries, contact us:</p>
-    <div class="social-links">
-      📧 <a href="mailto:rohullahiqbal@yahoo.com">rohullahiqbal@yahoo.com</a><br>
-      🌐 <a href="https://www.facebook.com/yourpage" target="_blank">Facebook Page</a> |
-      💼 <a href="https://www.linkedin.com/in/rohullah-iqbal" target="_blank">LinkedIn</a>
-    </div>
-    <p style="margin-top:10px;">© 2025 AI Explain You Science — All Rights Reserved</p>
+    <h3>Contact Us</h3>
+    <p>
+      📧 Email: <a href="mailto:ptbumofficial@gmail.com">ptbumofficial@gmail.com</a><br>
+      🌐 Facebook: <a href="https://facebook.com/BedariTechPakistan" target="_blank">Bedari Tech Pakistan</a><br>
+      💼 LinkedIn: <a href="https://linkedin.com/company/bedari-tech-pakistan" target="_blank">Bedari Tech Pakistan</a>
+    </p>
   </footer>
 
   <script>
-    function verifyCertificate() {
-      const id = document.getElementById("certificateId").value.trim();
-      const resultDiv = document.getElementById("result");
+    // Get certificate ID from URL
+    const params = new URLSearchParams(window.location.search);
+    const certId = params.get("id");
 
-      if (id === "") {
-        resultDiv.innerHTML = "<p style='color:red;'>⚠️ Please enter a Certificate ID.</p>";
-        return;
-      }
+    const container = document.getElementById("certificate-info");
 
-      // Certificate folder path (keep your .jpg certificates in 'certificates' folder)
-      const imagePath = `certificates/${id}.jpg`;
-
-      // Check if the image exists
-      fetch(imagePath)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error("Certificate not found");
-          }
-          resultDiv.innerHTML = `
-            <h3>✅ Certificate Verified Successfully!</h3>
-            <p>Certificate ID: <b>${id}</b></p>
-            <img src="${imagePath}" alt="Certificate">
-          `;
-        })
-        .catch(() => {
-          resultDiv.innerHTML = "<p style='color:red;'>❌ Invalid Certificate ID. Please check and try again.</p>";
-        });
+    if (certId) {
+      // Show the verified certificate
+      container.innerHTML = `
+        <p><strong>Name:</strong> Verified Candidate</p>
+        <p><strong>Certificate ID:</strong> ${certId}</p>
+        <div class="certificate">
+          <img src="images/${certId}.jpg" alt="Certificate ${certId}">
+        </div>
+        <h2>Professional of Tehreek e Baidari</h2>
+      `;
+    } else {
+      // If no ID in URL
+      container.innerHTML = `
+        <p class="error">❌ No certificate ID provided. Please scan a valid QR code.</p>
+      `;
     }
   </script>
 
